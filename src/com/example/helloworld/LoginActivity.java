@@ -6,14 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import inputcells.SimpleTextInputCellFragment;
 
 public class LoginActivity extends Activity {
 
+	
+	SimpleTextInputCellFragment fragInputCellAccount;
+	SimpleTextInputCellFragment fragInputCellPassword;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		
+		
+		fragInputCellAccount=(SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_account);
+		fragInputCellPassword=(SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_password);
 		
 		Button btn_register;
 		btn_register=(Button) findViewById(R.id.btn_register);
@@ -46,6 +54,10 @@ public class LoginActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		fragInputCellAccount.setLabelText("µ«¬º√˚");
+		fragInputCellAccount.setHintText("«Î ‰»Îµ«¬º√˚");
+		fragInputCellPassword.setLabelText("√‹¬Î");
+		fragInputCellPassword.setHintText("«Î ‰»Î√‹¬Î");
 		
 		
 		
