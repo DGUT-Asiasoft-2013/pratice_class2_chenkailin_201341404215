@@ -48,6 +48,16 @@ public class LoginActivity extends Activity {
 		});
 		
 		
+		
+		findViewById(R.id.forgot_password).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				goRecoverPassword();
+			}
+		});
+		
 	}
 	
 	@Override
@@ -74,6 +84,11 @@ public class LoginActivity extends Activity {
 	
 	public void goLogin(){
 		Intent itnt=new Intent(LoginActivity.this,HelloWorldActivity.class);
+		startActivity(itnt);
+	}
+	
+	public void goRecoverPassword(){
+		Intent itnt=new Intent(this,PasswordRecoverActivity.class);
 		startActivity(itnt);
 	}
 	
