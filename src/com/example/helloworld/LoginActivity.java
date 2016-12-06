@@ -34,8 +34,7 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent itnt=new Intent(LoginActivity.this,RegisterActivity.class);
-				startActivity(itnt);
+				goRegister();
 			}
 		});
 		
@@ -44,10 +43,11 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent itnt=new Intent(LoginActivity.this,HelloWorldActivity.class);
-				startActivity(itnt);
+				goLogin();
 			}
 		});
+		
+		
 	}
 	
 	@Override
@@ -56,13 +56,25 @@ public class LoginActivity extends Activity {
 		super.onResume();
 		fragInputCellAccount.setLabelText("µ«¬º√˚");
 		fragInputCellAccount.setHintText("«Î ‰»Îµ«¬º√˚");
+		
 		fragInputCellPassword.setLabelText("√‹¬Î");
 		fragInputCellPassword.setHintText("«Î ‰»Î√‹¬Î");
+		fragInputCellPassword.setIsPassword(true);
 		
 		
 		
 		
 		
+	}
+	
+	public void goRegister(){
+		Intent itnt=new Intent(LoginActivity.this,RegisterActivity.class);
+		startActivity(itnt);
+	}
+	
+	public void goLogin(){
+		Intent itnt=new Intent(LoginActivity.this,HelloWorldActivity.class);
+		startActivity(itnt);
 	}
 	
 	

@@ -22,6 +22,13 @@
                 tools:layout="@layout/fragment_inputcell_simpletext" />
 
             <fragment
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="inputcells.SimpleTextInputCellFragment"
+                tools:layout="@layout/fragment_inputcell_simpletext" />
+
+            <fragment
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,23 +42,32 @@
                 class="inputcells.SimpleTextInputCellFragment"
                 tools:layout="@layout/fragment_inputcell_simpletext" />
 
-           <fragment
-               android:id="@+id/imagei"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               class="inputcells.PictureInputCellFragment"
-               tools:layout="@layout/fragment_inputccell_picture" />
+            <fragment
+                android:id="@+id/imagei"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="inputcells.PictureInputCellFragment"
+                tools:layout="@layout/fragment_inputccell_picture" />
 
-            <Button
-                android:id="@+id/btn_submit"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="注册" />
-            <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="取消" />
+                android:layout_height="wrap_content"
+                android:weightSum="2" >
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="注册" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="取消" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

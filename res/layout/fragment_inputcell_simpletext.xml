@@ -11,13 +11,13 @@
                     android:id="@+id/label"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:text="登录名" />
+                    android:text="输入项目" />
 
                 <EditText
                     android:id="@+id/edit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="请输入登录名" />
+                    android:hint="请输入内容" />
     
 
 </LinearLayout>
