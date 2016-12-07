@@ -51,6 +51,7 @@ PasswordRecoverStep2Fragment step2=new PasswordRecoverStep2Fragment();
 				R.animator.slide_out_right)
 		.replace(R.id.container,step2)
 		.addToBackStack(null).commit();
+		
 	}
 	
 }

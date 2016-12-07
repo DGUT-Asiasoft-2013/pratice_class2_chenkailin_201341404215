@@ -39,6 +39,15 @@
             android:name="PasswordRecoverActivity"
             android:label="@string/app_name"
             ></activity>
+        
+         <activity 
+            android:name="FeedContentActivity"
+            android:label="@string/app_name"
+            ></activity>
+         <activity 
+            android:name="NewArticalActivity"
+            android:label="@string/app_name"
+            ></activity>
     </application>
 
 </manifest>
