@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
 
     <FrameLayout
-android:id="@+id/navbar"
+        android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/white" >
@@ -14,20 +14,20 @@ android:id="@+id/navbar"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Feeds" />
-        
-        <View  
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="bottom"
-            android:background="@android:color/background_dark"/>
+            android:background="@android:color/background_dark" />
     </FrameLayout>
 
     <ListView
-        android:layout_marginTop="50dp"
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" >
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp" >
     </ListView>
 
 </FrameLayout>

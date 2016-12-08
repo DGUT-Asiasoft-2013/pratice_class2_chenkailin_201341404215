@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import fragments.MainTabbarFragment;
 import fragments.MainTabbarFragment.OnTabSelectedListener;
 import page.FeedListFragment;
@@ -32,6 +34,17 @@ public class HelloWorldActivity extends Activity {
 			@Override
 			public void onTabSelected(int index) {
 				changeContentFragment(index);
+			}
+		});
+		
+		Button btnNew=(Button) findViewById(R.id.btn_new);
+		btnNew.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				pushNewArtical();
+				
 			}
 		});
 		
@@ -64,6 +77,16 @@ public class HelloWorldActivity extends Activity {
 		.beginTransaction()
 		.replace(R.id.content, newFrag)
 		.commit();
+	}
+	
+	public void pushNewArtical(){
+		
+		Intent intent=new Intent(this,NewArticalActivity.class);
+		
+		startActivity(intent);
+		
+		overridePendingTransition(R.anim.slide_in_buttom,0);
+		
 	}
 	
 

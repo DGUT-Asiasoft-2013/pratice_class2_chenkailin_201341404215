@@ -27,7 +27,7 @@ public class MainTabbarFragment extends Fragment {
 		tabFeeds = view.findViewById(R.id.tab_feeds);
 		tabNotes = view.findViewById(R.id.tab_notes);
 		tabSearch = view.findViewById(R.id.tab_search);
-		tabMe = view.findViewById(R.id.tab_me);
+		tabMe = view.findViewById(R.id.tab_Me);
 		
 		tabs = new View[] {
 				tabFeeds, tabNotes, tabSearch, tabMe
@@ -44,16 +44,7 @@ public class MainTabbarFragment extends Fragment {
 		}
 		
 		
-		
-		btnNew.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				pushNewArtical();
-				
-			}
-		});
+
 		return view;
 		
 	}
@@ -93,13 +84,5 @@ public class MainTabbarFragment extends Fragment {
 	}
 	
 	
-	public void pushNewArtical(){
-		
-		Intent intent=new Intent(getActivity(),NewArticalActivity.class);
-		
-		startActivity(intent);
-		
-		//overridePendingTransition(R.anim.slide_in_buttom,0);
-		
-	}
+
 }

@@ -68,12 +68,12 @@ String  date[];
 			
 			if(convertView==null){
 				LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-				view = inflater.inflate(android.R.layout.simple_list_item_1, null);	
+				view = inflater.inflate(R.layout.my_list_items, null);	
 			}else{
 				view = convertView;
 			}
 			
-			TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+			TextView text1 = (TextView) view.findViewById(R.id.my_list_feeds);
 			text1.setText(date[position]);
 			
 			return view;
