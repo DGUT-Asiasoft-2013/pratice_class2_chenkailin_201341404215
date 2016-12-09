@@ -1,5 +1,6 @@
 package inputcells;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -11,6 +12,7 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.content.Intent;
 import android.database.Cursor;
@@ -31,6 +33,8 @@ public class PictureInputCellFragment extends BaseInputCellFragment {
 	ImageView imageView;
 	TextView labelView;
 	TextView hintView;
+	byte[] pngData;
+	
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -102,6 +106,18 @@ return view;
 		
 	}
 	
+	 void saveBitmap(Bitmap bitmap) {
+		// TODO Auto-generated method stub
+ByteArrayOutputStream baos=new ByteArrayOutputStream();
+bitmap.compress(CompressFormat.PNG,100, baos);
+pngData=baos.toByteArray();
+	}
+	 
+	public byte[] getPngData() {
+		return pngData;
+	}
+	
+	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	
@@ -110,7 +126,9 @@ return view;
 		}
 		if(requestCode==1){
 			Bitmap bmp=(Bitmap) data.getExtras().get("data");
+			saveBitmap(bmp);
 			imageView.setImageBitmap(bmp);
+			
 	//	Log.d("camera capture",data.getExtras().keySet().toString());
 	//	Toast.makeText(getActivity(),data.getDataString(), Toast.LENGTH_LONG).show();
 		}
@@ -118,6 +136,7 @@ return view;
 			Bitmap bmp;
 			try {
 				bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
+				saveBitmap(bmp);
 				imageView.setImageBitmap(bmp);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -126,4 +145,8 @@ return view;
 			
 		}
 	}
+	
+	
+	
+	
 }

@@ -42,10 +42,7 @@ public class BootActivity extends Activity {
 //	},1000);
 //	
 		OkHttpClient clinet=new OkHttpClient();
-		
-	//	Request request=new Request.b
-		Request request=new Request.Builder().url("http://172.27.0.40:8080/membercenter/api/hello").method("GET", null).build();
-		
+		Request request=new Request.Builder().url("http://172.27.0.40:8080/membercenter/api/hello").method("GET", null).build();	
 	clinet.newCall(request).enqueue(new Callback() {
 		
 		@Override
