@@ -2,6 +2,8 @@ package com.example.helloworld;
 
 import java.io.IOException;
 
+import com.example.entity.Server;
+
 import android.accounts.NetworkErrorException;
 import android.app.Activity;
 import android.content.Intent;
@@ -24,65 +26,74 @@ public class BootActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_boot);
-		
-		
+
+
 	}
-	
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+
+		//	Handler handler=new Handler();
+		//	handler.postDelayed(new Runnable(){
+		//		
+		//		public void run(){
+		//			startLoginActivity();
+		//		}
+		//	},1000);
+		//	
+
+
+		//		OkHttpClient clinet=new OkHttpClient();
+		//		Request request=new Request.Builder().url("http://172.27.0.40:8080/membercenter/api/hello").method("GET", null).build();	
 		
-//	Handler handler=new Handler();
-//	handler.postDelayed(new Runnable(){
-//		
-//		public void run(){
-//			startLoginActivity();
-//		}
-//	},1000);
-//	
-		OkHttpClient clinet=new OkHttpClient();
-		Request request=new Request.Builder().url("http://172.27.0.40:8080/membercenter/api/hello").method("GET", null).build();	
-	clinet.newCall(request).enqueue(new Callback() {
-		
-		@Override
-		public void onResponse( Call arg0, final Response arg1) throws IOException {
-			// TODO Auto-generated method stub
-			BootActivity.this.runOnUiThread(new Runnable() {
-				
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					try {
-						Toast.makeText(BootActivity.this,arg1.body().string(),Toast.LENGTH_SHORT).show();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+		OkHttpClient client=Server.getShareClient();
+		Request request=Server.requestBuilderWithApi("hello")
+				.method("get", null)
+				.build();
+
+
+		client.newCall(request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse( Call arg0, final Response arg1) throws IOException {
+				// TODO Auto-generated method stub
+				BootActivity.this.runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						try {
+							Toast.makeText(BootActivity.this,arg1.body().string(),Toast.LENGTH_SHORT).show();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+						startLoginActivity();
 					}
-				
-					startLoginActivity();
-				}
-			});
-		}
-		
-		@Override
-		public void onFailure(Call arg0, final IOException arg1) {
-			// TODO Auto-generated method stub
-			BootActivity.this.runOnUiThread(new Runnable() {
-				
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-				Toast.makeText(BootActivity.this,arg1.getLocalizedMessage(),Toast.LENGTH_SHORT).show();;	
-				}
-			});
-		}
-	});
-	
-	
+				});
+			}
+
+			@Override
+			public void onFailure(Call arg0, final IOException arg1) {
+				// TODO Auto-generated method stub
+				BootActivity.this.runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						Toast.makeText(BootActivity.this,arg1.getLocalizedMessage(),Toast.LENGTH_SHORT).show();;	
+					}
+				});
+			}
+		});
+
+
 	}
-	
-	
+
+
 	void startLoginActivity(){
 		Intent itnt=new Intent(this,LoginActivity.class);
 		//Intent itnt=new Intent(this,RegisterActivity.class);

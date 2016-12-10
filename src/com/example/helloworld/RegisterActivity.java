@@ -3,6 +3,8 @@ package com.example.helloworld;
 import java.io.IOException;
 import java.security.PublicKey;
 
+import com.example.entity.Server;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -83,23 +85,28 @@ public class RegisterActivity extends Activity {
 		fragInputCellPasswordRepeat.setIsPassword(true);
 	}
 
-
+//注册，，将注册信息提交到服务器
 	public void submit(){
+		
+		String account= fragInputCellAccount.getEditText();
+		String name= fragInputCellName.getEditText();
+		String email= fragInputEmailAdress.getEditText();
 		String password= fragInputCellPassword.getEditText();
 		String passwordReoeat= fragInputCellPasswordRepeat.getEditText();
 
+	
 		if(!password.equals(passwordReoeat)){
-
+			new AlertDialog.Builder(this)
+			.setMessage("两次密码输入不一致")
+			.setIcon(android.R.drawable.ic_dialog_alert)
+			.setPositiveButton("好",null)
+			.show();
 
 			return;
 		}
 		
 		password=MD5.getMD5(password);
-		
-		String account= fragInputCellAccount.getEditText();
-		String name= fragInputCellName.getEditText();
-		String email= fragInputEmailAdress.getEditText();
-
+	
 		
 
 
@@ -114,6 +121,19 @@ if(fragInputAvatar.getPngData()!=null){
 			RequestBody.create(MediaType.parse("image/png"),
 					fragInputAvatar.getPngData()));
 		}
+
+//OkHttpClient client=new OkHttpClient();
+//Request request=new Request.Builder()
+//.url("http://172.27.0.40:8080/membercenter/api/register")
+//.method("post",null).post(requestBody.build())
+//.build();
+
+OkHttpClient client=Server.getShareClient();
+Request request=Server.requestBuilderWithApi("register")
+.method("post", null).post(requestBody.build())
+.build();
+
+
 		//		MultipartBody requestBodyBulider=new MultipartBody.Builder()
 		//				.setType(MultipartBody.FORM)
 		//				.addFormDataPart("account", account)
@@ -121,14 +141,9 @@ if(fragInputAvatar.getPngData()!=null){
 		//				.addFormDataPart("email", email)
 		//				.addFormDataPart("passwordHash", password)
 		//				.build();
-		OkHttpClient client=new OkHttpClient();
 
 
 		//Request request=new Request.Builder().url("http://172.27.0.40:8080/membercenter/api/hello").method("GET", null).build();		
-		Request request=new Request.Builder()
-				.url("http://172.27.0.40:8080/membercenter/api/register")
-				.method("post",null).post(requestBody.build())
-				.build();
 
 		//		Request request=new Request.Builder()
 		//				.url("http://172.27.0.40:8080/membercenter/api/register")
@@ -152,9 +167,10 @@ if(fragInputAvatar.getPngData()!=null){
 						try {
 							progressDialog.dismiss();
 							RegisterActivity.this.onResponse(arg0, arg1.body().string());
-						} catch (IOException e) {
+						} catch (Exception e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
+							RegisterActivity.this.onFailure(arg0,e);
+							
 						}
 					}
 				});
@@ -170,7 +186,7 @@ if(fragInputAvatar.getPngData()!=null){
 						// TODO Auto-generated method stub
 						progressDialog.dismiss();
 						RegisterActivity.this.onFailure(arg0,arg1);
-
+						
 					}
 				});
 			}
@@ -181,11 +197,11 @@ if(fragInputAvatar.getPngData()!=null){
 
 	}
 
-	void onFailure(Call arg0, IOException arg1) {
+	void onFailure(Call arg0, Exception arg1) {
 		// TODO Auto-generated method stub
 
 		new AlertDialog.Builder(this)
-		.setTitle("请求失败")
+		.setTitle("注册失败")
 		.setMessage(arg1.getLocalizedMessage())
 		.setPositiveButton("好",null)
 		.show();
